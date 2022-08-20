@@ -43,11 +43,11 @@ for DIR in $DIR_DISTR $DIR_SOURCE ;
 
 ### Find Downloaded Packages In Apt Cache And Write It In List
 echo ">>> Create Package List From apt cache";
-du -ha /var/apt/cache/* | awk '{print $NF}' | grep tar. > list-packages
+du -ha /var/apt/cache/* | awk '{print $NF}' | grep tar. > $DIR_WORKING/list-packages
 
 ### Copy Packages To Distrib Dir
 echo ">>> Copy Packages From apt cache To $DIR_DISTR";
-for PACKAGE in $( cat list-packages ); do cp $PACKAGE $DIR_DISTR ; done
+for PACKAGE in $( cat $DIR_WORKING/list-packages ); do cp $PACKAGE $DIR_DISTR ; done
 
 ### Extract Packages To Source Dir
 echo ">>> Extract Packages To $DIR_SOURCE";
